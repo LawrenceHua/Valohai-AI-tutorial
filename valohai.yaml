@@ -1,0 +1,20 @@
+- step:
+    name: Load Dataset
+    image: python:3.8
+    command:
+      - pip install pandas
+      - python load_data.py
+    outputs:
+      - data.csv
+
+- step:
+    name: Train Model
+    image: python:3.8
+    command:
+      - pip install pandas scikit-learn
+      - python train_model.py
+    inputs:
+      - name: data
+        default: data.csv
+    outputs:
+      - model.pkl
