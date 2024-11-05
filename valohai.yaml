@@ -1,20 +1,17 @@
 - step:
     name: Load Dataset
-    image: python:3.8
+    image: jupyter/scipy-notebook
     command:
-      - pip install pandas
       - python load_data.py
     outputs:
-      - data.csv
+      - name: data.csv  # Only specify the file name, without `path`
 
 - step:
     name: Train Model
-    image: python:3.8
+    image: jupyter/scipy-notebook
     command:
-      - pip install pandas scikit-learn
       - python train_model.py
     inputs:
-      - name: data
-        default: data.csv
+      - name: data.csv
     outputs:
-      - model.pkl
+      - name: model.pkl  # Only specify the file name, without `path`
